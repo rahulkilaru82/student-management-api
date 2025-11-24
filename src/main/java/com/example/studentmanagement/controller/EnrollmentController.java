@@ -20,7 +20,7 @@ public class EnrollmentController {
     }
 
     @GetMapping("/student/{studentId}")
-    public List<StudentCourseDto> byStudent(@PathVariable Long studentId) {
+    public List<StudentCourseDto> byStudent(@PathVariable("studentId") Long studentId) {
         return service.listByStudentId(studentId).stream()
                 .map(e -> new StudentCourseDto(
                         e.getCourse().getId(),
@@ -48,7 +48,7 @@ public class EnrollmentController {
     }
 
     @DeleteMapping
-    public void unenroll(@RequestParam Long studentId, @RequestParam Long courseId) {
+    public void unenroll(@RequestParam("studentId") Long studentId, @RequestParam("courseId") Long courseId) {
         service.unenroll(studentId, courseId);
     }
 }
